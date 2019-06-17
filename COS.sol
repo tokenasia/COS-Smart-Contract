@@ -1,4 +1,4 @@
-pragma solidity ^0.5.0;
+pragma solidity 0.5.8;
 
 import "./ERC20.sol";
 
@@ -31,7 +31,8 @@ contract ARX is ERC20 {
     function airdrop(address[] calldata _recipients, uint256[] calldata _values) external returns (bool) {
         require(_recipients.length == _values.length, "Inconsistent data lengths");
         uint256 senderBalance = _balances[msg.sender];
-        for (uint256 i = 0; i < _values.length; i++) {
+        uint256 length = _values.length;
+        for (uint256 i = 0; i < length; i++) {
             uint256 value = _values[i];
             address to = _recipients[i];
             require(senderBalance >= value, "Insufficient Balance");
